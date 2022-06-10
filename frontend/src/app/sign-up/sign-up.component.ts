@@ -1,5 +1,7 @@
+// @ts-nocheck
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -17,8 +19,8 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.SignupForm = new FormGroup({
-      email: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required, Validators.email]),
+      email: new FormControl(null),
+      password: new FormControl(null),
     });
   }
 
