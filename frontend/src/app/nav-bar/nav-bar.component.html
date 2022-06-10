@@ -1,0 +1,26 @@
+<nav class="app-nav">
+    <h1><img src="/assets/Logo.png" alt="VueFisz - aplikacja"></h1>
+    <ul>
+        <li class="nav-item">
+            <a routerLink="/" *ngIf="!(authService.isLoggedIn$ | async)"><img alt="" src="/assets/home.png"/><span>Strona główna</span></a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isLoggedIn$ | async">
+            <a routerLink="dashboard" ><img alt="" src="/assets/home.png"/><span>Strona główna</span></a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isLoggedIn$ | async">
+        <a routerLink='/sets' ><img alt="" src="/assets/brain.png"/><span>Zestawy fiszek</span></a> 
+        </li>
+        <li class="nav-item" *ngIf="authService.isLoggedIn$ | async">
+        <a routerLink='/random' ><img alt="" src="/assets/brain.png"/><span>Losowa fiszka</span></a> 
+        </li>
+        <li class="nav-item" *ngIf="!(authService.isLoggedIn$ | async)">
+            <a routerLink='/sign-up'><img alt="" src="/assets/login.png"/><span>Zarejestruj się</span></a> 
+        </li>
+        <li class="nav-item" *ngIf="!(authService.isLoggedIn$ | async)">
+            <a routerLink='/log-in'><img alt="" src="/assets/login.png"/><span>Zaloguj się</span></a> 
+        </li>
+        <li class="nav-item" *ngIf="authService.isLoggedIn$ | async">
+            <app-log-out></app-log-out>
+        </li>
+    </ul>
+</nav>

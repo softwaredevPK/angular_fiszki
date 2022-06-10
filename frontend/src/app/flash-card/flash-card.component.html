@@ -1,0 +1,23 @@
+<form class="flashcard-states">
+    <div><input type="radio" id="radio-1" name="radio" (change)="all.emit('')" checked><label for="radio-1">Wszystkie</label></div>
+    <div><input type="radio" id="radio-2" name="radio" (change)="toBeRepeatedOnly.emit('')"><label for="radio-2">Do powtórzenia</label></div>
+    <div><input type="radio" id="radio-3" name="radio" (change)="learnedOnly.emit('')"><label for="radio-3">Nauczone</label></div>
+</form>
+<label>
+<input type="checkbox" (change)="isReversed = !isReversed" [checked]="isReversed"/>
+    <div class="flip-card">
+        <div class="front">
+            <p>{{frontText}}</p>
+        </div>
+        <div class="back">
+            <p>{{backText}}</p>
+        </div>
+    </div>
+    <template>
+    </template>
+    <div class="btn-actions">
+        <button class="btn-learned" *ngIf="showRepeat" (click)="checkIfReversed(); learned(id)">Nauczone</button>
+        <button class="btn-toRepeat" *ngIf="showLearned" (click)="checkIfReversed(); toBeRepeated(id)">Do powtórki</button>
+        <button class="btn-next" (click)="checkIfReversed(); next.emit('');">Kolejny</button>
+    </div>
+</label>
