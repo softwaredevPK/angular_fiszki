@@ -13,13 +13,13 @@ import { AuthService } from '../services/auth.service';
 })
 export class LogInComponent implements OnInit {
 
-  SignupForm: FormGroup;
+  Form: FormGroup;
 
   main_error: boolean = false
   main_error_msg: string = ''
 
   ngOnInit() {
-    this.SignupForm = new FormGroup({
+    this.Form = new FormGroup({
       email: new FormControl(null),
       password: new FormControl(null),
     });
@@ -31,7 +31,7 @@ export class LogInComponent implements OnInit {
 
   submitForm() {
     this.authService
-      .login(this.SignupForm.get('email')?.value, this.SignupForm.get('password')?.value)
+      .login(this.Form.get('email')?.value, this.Form.get('password')?.value)
       .subscribe((response) => {
         this.router.navigate(['dashboard'])
       }, (response) => {
@@ -40,7 +40,7 @@ export class LogInComponent implements OnInit {
 
           }
           else {
-            this.SignupForm.controls[k].setErrors(v[0])
+            this.Form.controls[k].setErrors(v[0])
           }  
         }
       }

@@ -17,6 +17,8 @@ import { RandomFlashCardComponent } from './random-flash-card/random-flash-card.
 import { SeeFlashCardComponent } from './see-flash-card/see-flash-card.component';
 import { EditSetComponent } from './edit-set/edit-set.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { FlashCardListElComponent } from './flash-card-list-el/flash-card-list-el.component';
+import { CreateSetComponent } from './create-set/create-set.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     RandomFlashCardComponent,
     SeeFlashCardComponent,
     EditSetComponent,
-    SignUpComponent
+    SignUpComponent,
+    FlashCardListElComponent,
+    CreateSetComponent
   ],
   imports: [
     BrowserModule,

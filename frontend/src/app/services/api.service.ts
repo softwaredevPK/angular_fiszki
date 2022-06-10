@@ -43,4 +43,15 @@ export class ApiService {
     return this.http.get(`sets/${id}/` + extra_url)
     }
 
+  deleteFlashCard(id: string|null) {
+    return this.http.delete(`flashcards/${id}/`)
+  }
+
+  editFlashcard(id: string|null, frontText: string, backText: string) {
+    return this.http.put(`flashcards/${id}/`, {front: frontText, back: backText})
+  }
+
+  createSet(name: string) {
+    return this.http.post(`sets/`, {name: name})
+  }
 }

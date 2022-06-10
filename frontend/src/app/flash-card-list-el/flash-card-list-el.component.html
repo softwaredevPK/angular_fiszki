@@ -1,0 +1,18 @@
+<div *ngIf="!editMode" class="flashcard element">
+    <strong class="flashcard name">{{frontText}} | {{backText}}</strong>
+    <ul>
+            <li *ngIf="repeat_needed"><img src="/assets/repeat.png" alt="powtórz"/></li>
+            <li *ngIf="passed"><img src="/assets/passed.png" alt="zaliczone"/></li>
+            <li class="edit" (click)="editMode = !editMode"><img src="/assets/edit.png" alt="edytuj"/></li>
+            <li class="remove" (click)="deleteFlashcard(id)"><img src="/assets/bin.png" alt="usuń"/></li>
+    </ul>
+</div>
+<div *ngIf="editMode" class="flashcard element">
+    <form [formGroup]="Form" (ngSubmit)="editFlashcard(id)">
+        <small *ngIf="!Form.get('front')?.valid && Form.get('front')?.touched" class="err-info">{{Form.get('front').errors}}</small>
+        <input type='text' formControlName="front" name='front' placeholder="Podaj adres email..." [ngClass]="{'is-invalid': !Form.get('front')?.valid && Form.get('front')?.touched}">
+        <small *ngIf="!Form.get('back')?.valid && Form.get('back')?.touched" class="err-info">{{Form.get('back').errors}}</small>
+        <input type='text' name='back' class="form-control" formControlName="back" placeholder="Podaj hasło..." [ngClass]="{'is-invalid': !Form.get('back')?.valid && Form.get('back')?.touched}">
+        <button type='submit'>Zapisz zmianę</button>
+    </form>
+</div>

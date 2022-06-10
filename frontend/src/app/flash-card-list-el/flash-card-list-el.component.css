@@ -1,0 +1,32 @@
+.flashcard.element{
+    border: 1px solid #c1c1c1;
+    margin-bottom: 20px;
+    border-radius: 25px;
+    padding: 15px 15px 15px 30px;
+    display: flex;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    max-width: 450px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.flashcard strong{
+    flex: 1;
+}
+
+.flashcard ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+ul img{
+    max-width: 25px;
+}
+
+.remove:hover, .edit:hover{
+    cursor: pointer;
+}
