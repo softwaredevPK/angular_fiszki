@@ -30,15 +30,18 @@ export class LogInComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.SignupForm.get('password')?.value)
     this.authService
-      
       .login(this.SignupForm.get('email')?.value, this.SignupForm.get('password')?.value)
       .subscribe((response) => {
         this.router.navigate(['dashboard'])
       }, (response) => {
         for (const [k, v] of Object.entries(response.error)) {
-          this.SignupForm.controls[k].setErrors(v[0])
+          if (k == 'non_field_errors'){
+
+          }
+          else {
+            this.SignupForm.controls[k].setErrors(v[0])
+          }  
         }
       }
       );

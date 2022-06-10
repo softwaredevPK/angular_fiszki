@@ -1,0 +1,13 @@
+<div class="sign-up">
+    <h2>Zarejestruj się</h2>
+    <p *ngIf="main_error" class="err-info" style="margin-bottom: 15px;">{{main_error_msg}}</p>
+    <form  [formGroup]="SignupForm" (ngSubmit)="submitForm()">
+        <small *ngIf="!SignupForm.get('email')?.valid && SignupForm.get('email')?.touched" class="err-info">{{SignupForm.get('email').errors}}</small>
+        <input type='email' formControlName="email" name='email' placeholder="Podaj adres email..." [ngClass]="{'is-invalid': !SignupForm.get('email')?.valid && SignupForm.get('email')?.touched}">
+        <small *ngIf="!SignupForm.get('password')?.valid && SignupForm.get('password')?.touched" class="err-info">{{SignupForm.get('email').errors}}</small>
+        <input type='password' name='password' class="form-control" formControlName="password" placeholder="Podaj hasło..." [ngClass]="{'is-invalid': !SignupForm.get('password')?.valid && SignupForm.get('password')?.touched}">
+        <button type='submit'>Sign up</button>
+    </form>
+</div>
+
+

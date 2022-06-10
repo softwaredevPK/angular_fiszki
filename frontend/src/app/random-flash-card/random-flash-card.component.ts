@@ -31,10 +31,10 @@ export class RandomFlashCardComponent implements OnInit {
   }
 
   getRandom() {
+    console.log('started')
     this.apiService.getRandomFlashcard(this.learnedOnly, this.toBeRepeatedOnly).subscribe(
       (response) => {
-        console.log(response)
-        console.log('tutaj jakieś przypisanie do current')
+        this.current = response as currentInterface
       })
     }
 

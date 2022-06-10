@@ -1,5 +1,5 @@
 <h2>Losowa fiszka</h2>
 <app-flash-card [frontText]="current.front" [id]="current.id" [backText]="current.back" [showLearned]="!toBeRepeatedOnly" [showRepeat]="!learnedOnly"
-(next)="getRandom" (learnedOnly)="learnChanged" (toBeRepeatedOnly)="repeatedChanged" (all)="allChanged">
+(next)="getRandom()" (learnedOnly)="learnChanged()" (toBeRepeatedOnly)="repeatedChanged()" (all)="allChanged()">
 </app-flash-card>
 	

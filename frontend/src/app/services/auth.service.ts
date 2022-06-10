@@ -20,10 +20,15 @@ export class AuthService {
     return this.apiService.login(email, password).pipe(
       tap((response: any) => {
         console.log(response)
+        console.log('tutaj')
         this._isLoggedIn$.next(true);
         localStorage.setItem('token', response.auth_token);
       })
     )
+  }
+
+  register(email: string, password: string) {
+    return this.apiService.register(email, password)
   }
 
   logout() {

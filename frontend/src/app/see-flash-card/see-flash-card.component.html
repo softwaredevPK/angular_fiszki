@@ -1,0 +1,4 @@
+<h2>Zestaw: {{setName}}</h2>
+	<app-flash-card [frontText]="current.front" [backText]="current.back" [id]="current.id" [showLearned]="!toBeRepeatedOnly" [showRepeat]="!learnedOnly"
+	(next)="nextFlashcard" (learnedOnly)="learnChanged" (toBeRepeatedOnly)="repeatedChanged" (all)="allChanged"></app-flash-card>
+	

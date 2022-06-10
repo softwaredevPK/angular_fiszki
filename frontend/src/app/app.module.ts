@@ -14,6 +14,9 @@ import { AuthService } from './services/auth.service';
 import { ApiService } from './services/api.service';
 import { FlashCardComponent } from './flash-card/flash-card.component';
 import { RandomFlashCardComponent } from './random-flash-card/random-flash-card.component';
+import { SeeFlashCardComponent } from './see-flash-card/see-flash-card.component';
+import { EditSetComponent } from './edit-set/edit-set.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { RandomFlashCardComponent } from './random-flash-card/random-flash-card.
     HomeComponent,
     LogInComponent,
     FlashCardComponent,
-    RandomFlashCardComponent
+    RandomFlashCardComponent,
+    SeeFlashCardComponent,
+    EditSetComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
