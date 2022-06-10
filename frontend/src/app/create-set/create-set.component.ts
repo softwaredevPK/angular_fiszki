@@ -21,7 +21,7 @@ export class CreateSetComponent implements OnInit {
   }
 
   submitForm() {
-    this.apiService.createSet()
+    this.apiService.createSet(this.Form.get('name')?.value,)
       .subscribe((response) => {
         this.router.navigate(['sets'])
       })
