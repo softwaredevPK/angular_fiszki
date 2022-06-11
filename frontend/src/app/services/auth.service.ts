@@ -19,8 +19,6 @@ export class AuthService {
   login(email: string, password: string) {
     return this.apiService.login(email, password).pipe(
       tap((response: any) => {
-        console.log(response)
-        console.log('tutaj')
         this._isLoggedIn$.next(true);
         localStorage.setItem('token', response.auth_token);
       })
@@ -34,7 +32,6 @@ export class AuthService {
   logout() {
     return this.apiService.logout().pipe(
       tap((response: any) => {
-        console.log('logout')
         this._isLoggedIn$.next(false);
         localStorage.removeItem('token');
       })

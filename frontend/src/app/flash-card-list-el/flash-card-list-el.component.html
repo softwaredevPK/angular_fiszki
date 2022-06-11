@@ -1,5 +1,5 @@
 <div *ngIf="!editMode" class="flashcard element">
-    <strong class="flashcard name">{{frontText}} | {{backText}}</strong>
+    <strong class="flashcard name">{{Form.controls['front']?.value}} | {{Form.controls['back']?.value}}</strong>
     <ul>
             <li *ngIf="repeat_needed"><img src="/assets/repeat.png" alt="powtórz"/></li>
             <li *ngIf="passed"><img src="/assets/passed.png" alt="zaliczone"/></li>
@@ -9,10 +9,20 @@
 </div>
 <div *ngIf="editMode" class="flashcard element">
     <form [formGroup]="Form" (ngSubmit)="editFlashcard(id)">
-        <small *ngIf="!Form.get('front')?.valid && Form.get('front')?.touched" class="err-info">{{Form.get('front').errors}}</small>
-        <input type='text' formControlName="front" name='front' placeholder="Podaj adres email..." [ngClass]="{'is-invalid': !Form.get('front')?.valid && Form.get('front')?.touched}">
-        <small *ngIf="!Form.get('back')?.valid && Form.get('back')?.touched" class="err-info">{{Form.get('back').errors}}</small>
-        <input type='text' name='back' class="form-control" formControlName="back" placeholder="Podaj hasło..." [ngClass]="{'is-invalid': !Form.get('back')?.valid && Form.get('back')?.touched}">
+        <ng-container *ngIf="Form.controls['front'].errors">
+            <small *ngFor="let item of Form.controls['front'].errors | keyvalue" class="err-info">
+                <strong>{{ item.value }}</strong>
+            </small>
+        </ng-container>
+        <input type='text' formControlName="front" name='front'  
+        [ngClass]="{'is-invalid': !Form.get('front')?.valid}">
+        <ng-container *ngIf="Form.controls['back'].errors">
+            <small *ngFor="let item of Form.controls['back'].errors | keyvalue" class="err-info">
+                <strong>{{ item.value }}</strong>
+            </small>
+        </ng-container>
+        <input type='text' name='back' class="form-control" formControlName="back" 
+        [ngClass]="{'is-invalid': !Form.get('back')?.valid}">
         <button type='submit'>Zapisz zmianę</button>
     </form>
 </div>

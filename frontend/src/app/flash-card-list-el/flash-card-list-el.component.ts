@@ -23,14 +23,13 @@ export class FlashCardListElComponent implements OnInit {
   constructor(private apiService: ApiService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id')
     this.Form = new FormGroup({
       front: new FormControl(null),
       back: new FormControl(null),
     });
+    this.Form.controls['front'].setValue(this.frontText)
+    this.Form.controls['back'].setValue(this.backText)
   }
-
-  submitForm() {}
 
   deleteFlashcard(id: string|null) {
     this.apiService.deleteFlashCard(id)
@@ -41,6 +40,13 @@ export class FlashCardListElComponent implements OnInit {
 
   editFlashcard(id: string|null) {
     this.apiService.editFlashcard(this.id, this.Form.get('front')?.value, this.Form.get('back')?.value)
-    this.editMode = false
+      .subscribe((data) => {
+        this.editMode = false
+      }, (errorResponse) => {
+        for (const key in errorResponse.error) {
+            this.Form.controls[key].setErrors({error: errorResponse.error[key]})
+        }
+      }  
+      ) 
   }
 }

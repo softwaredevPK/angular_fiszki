@@ -17,7 +17,7 @@ export class LogOutComponent implements OnInit {
   submitForm() {
     this.authService
     .logout().subscribe((response) => {
-      this.router.navigate(['dashboard'])
+      this.router.navigate([''])
     })
   }
 

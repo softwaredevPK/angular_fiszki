@@ -26,12 +26,7 @@ export class RandomFlashCardComponent implements OnInit {
     this.getRandom()
   }
 
-  getCurrent() {
-    return 'tttest'
-  }
-
   getRandom() {
-    console.log('started')
     this.apiService.getRandomFlashcard(this.learnedOnly, this.toBeRepeatedOnly).subscribe(
       (response) => {
         this.current = response as currentInterface

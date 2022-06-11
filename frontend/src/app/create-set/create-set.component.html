@@ -1,7 +1,12 @@
 <h2>Utwórz nowy zestaw</h2>
 
-<form [formGroup]="Form" (ngSubmit)="submitForm()">,
-    <small *ngIf="!Form.get('name')?.valid && Form.get('name')?.touched" class="err-info">{{Form.get('name').errors}}</small>
-    <input type='text' formControlName="name" name='name' placeholder="Podaj nazwę zestawu..." [ngClass]="{'is-invalid': !Form.get('name')?.valid && Form.get('name')?.touched}">
+<form [formGroup]="Form" (ngSubmit)="submitForm()">
+    <ng-container *ngIf="Form.controls['name'].errors">
+        <small *ngFor="let item of Form.controls['name'].errors | keyvalue" class="err-info">
+            <strong>{{ item.value }}</strong>
+        </small>
+    </ng-container>
+    <input type='text' formControlName="name" name='name' placeholder="Podaj nazwę zestawu..."
+    [ngClass]="{'is-invalid': !Form.get('name')?.valid}">
     <button type='submit'>Dodaj zestaw</button>
 </form>

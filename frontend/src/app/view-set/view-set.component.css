@@ -1,0 +1,40 @@
+
+button.add-flashcard{
+    border: 1px solid #c1c1c1;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    padding: 15px 15px 15px 30px;
+    display: flex;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    font-weight: 700;
+    font-family: 'Signika', sans-serif;
+    font-size: 16px;
+}
+
+
+button.add-flashcard:hover{
+    cursor: pointer;
+    background-color: #e1e1e1;
+}
+
+button.add-flashcard, hr, .flashcard.element, small:not(.err-info){
+    max-width: 450px;
+    width: 100%;
+    margin-left: 0;
+}
+
+.flashcard.element form{
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 15px;
+}
+
+small:not(.err-info){
+    padding-bottom: 15px;
+    display: block;
+    width: 100%;
+    text-align: right;
+}

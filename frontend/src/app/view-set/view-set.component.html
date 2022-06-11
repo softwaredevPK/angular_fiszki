@@ -1,0 +1,31 @@
+<div class="main">
+    <h2>{{ name }}</h2>
+    <button *ngIf="!newFlashcard" (click)="newFlashcard = !newFlashcard; back_error=false; front_error=false" class="button add-flashcard" type="button">+ Dodaj nową fiszkę</button>
+    <div *ngIf="newFlashcard" class="flashcard element">
+        <form [formGroup]="Form" (ngSubmit)="addFlashcard()">
+            <ng-container *ngIf="Form.controls['front'].errors">
+                <small *ngFor="let item of Form.controls['front'].errors | keyvalue" class="err-info">
+                    <strong>{{ item.value }}</strong>
+                </small>
+            </ng-container>
+            <input type='text' name='front' formControlName='front' placeholder="Dodaj przód fiszki..." 
+            [ngClass]="{'is-invalid': !Form.get('front')?.valid}">
+            <ng-container *ngIf="Form.controls['back'].errors">
+                <small *ngFor="let item of Form.controls['back'].errors | keyvalue" class="err-info">
+                    <strong>{{ item.value }}</strong>
+                </small>
+            </ng-container>
+            <small v-if="back_error" class="err-info">{{back_error_msg}}</small>
+            <input type='text' name='back'  formControlName='back' placeholder="Dodaj tył fiszki..." 
+            [ngClass]="{'is-invalid': !Form.get('back')?.valid}">
+            <button type='submit'>Zapisz zmianę</button>
+        </form>
+    </div>
+    <hr/>
+    <small>Wszystkich fiszek: {{flashcards.length}}, 
+        nauczono: {{get_passed()}}, 
+     do powtórzenia: {{get_repeat_needed()}}</small>
+    <ng-container *ngFor="let fCard of flashcards; index as i;">
+        <app-flash-card-list-el [frontText]="fCard.front" [backText]="fCard.back" [id]="fCard.id" [repeat_needed]="fCard.repeat_needed" [passed]="fCard.passed" (remove)="removeFlashcard(i)"></app-flash-card-list-el>
+    </ng-container>
+</div>

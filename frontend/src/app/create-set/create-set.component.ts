@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-set',
   templateUrl: './create-set.component.html',
-  styleUrls: ['./create-set.component.css']
+  styleUrls: ['./create-set.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CreateSetComponent implements OnInit {
   Form: FormGroup;
@@ -24,9 +25,11 @@ export class CreateSetComponent implements OnInit {
     this.apiService.createSet(this.Form.get('name')?.value,)
       .subscribe((response) => {
         this.router.navigate(['sets'])
-      })
+      }, (errorResponse) => {
+        for (const key in errorResponse.error) {
+            this.Form.controls[key].setErrors({error: errorResponse.error[key]})
+          }
+        }  
+    )
   }
-
-
-
 }

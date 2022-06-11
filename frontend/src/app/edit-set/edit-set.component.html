@@ -1,1 +1,12 @@
-<p>edit-set works!</p>
+<h2>Edycja zestawu</h2>
+
+<form [formGroup]="Form" (ngSubmit)="submitForm()">            
+    <ng-container *ngIf="Form.controls['name'].errors">
+        <small *ngFor="let item of Form.controls['name'].errors | keyvalue" class="err-info">
+            <strong>{{ item.value }}</strong>
+        </small>
+    </ng-container>
+    <input type='text' name='text' placeholder="Podaj nazwę zestawu..." formControlName="name"
+    [ngClass]="{'is-invalid': !Form.get('name')?.valid}">
+    <button type='submit'>Zapisz</button>
+</form>

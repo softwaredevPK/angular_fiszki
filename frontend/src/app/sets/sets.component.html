@@ -1,0 +1,29 @@
+<h2>Zestawy fiszek</h2>
+    <div class="container sets">
+        <a routerLink="createset">
+            <div class="set">
+                + Utwórz nowy zestaw
+            </div>
+        </a>
+        <!-- v-for starts here -->
+        <ng-container *ngFor="let set of sets; index as i;">
+            <a [routerLink]="['viewset', set.id]" class="set-link">
+                <div class="set">
+                    <div class="actions">
+                        <ul class="action-list">
+                            <a [routerLink]="['editset', set.id]" class="set-link" (click)="stop($event)">
+                                <li><img src="/assets/edit.png" alt=""></li>
+                            </a>
+                            <a [routerLink]="['learn', set.id]" class="set-link" (click)="stop($event)">
+                                <li><img src="/assets/brain.png" alt=""></li>
+                            </a>
+                            <a routerLink="." class="set-link" (click)="stop($event)">
+                                <li (click)="deleteSet(set.id, i)"><img src="/assets/bin.png" alt=""></li>
+                            </a>
+                        </ul>
+                    </div>
+                    <span class="set-title">{{set.name}}</span>
+                </div>
+            </a>
+        </ng-container>
+    </div>

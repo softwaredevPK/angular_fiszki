@@ -19,6 +19,9 @@ import { EditSetComponent } from './edit-set/edit-set.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FlashCardListElComponent } from './flash-card-list-el/flash-card-list-el.component';
 import { CreateSetComponent } from './create-set/create-set.component';
+import { SetsComponent } from './sets/sets.component';
+import { ViewSetComponent } from './view-set/view-set.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { CreateSetComponent } from './create-set/create-set.component';
     EditSetComponent,
     SignUpComponent,
     FlashCardListElComponent,
-    CreateSetComponent
+    CreateSetComponent,
+    SetsComponent,
+    ViewSetComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +50,7 @@ import { CreateSetComponent } from './create-set/create-set.component';
   providers: [
     AuthService,
     ApiService,
+    AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

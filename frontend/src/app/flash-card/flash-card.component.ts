@@ -1,4 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
+import {take, publish} from 'rxjs/operators'
 
 @Component({
   selector: 'app-flash-card',
@@ -19,22 +22,30 @@ export class FlashCardComponent implements OnInit {
   @Output () learnedOnly: EventEmitter<any> = new EventEmitter();
   isReversed: Boolean = false;
 
-  constructor() {
+  constructor(private apiService: ApiService,) {
    }
 
   ngOnInit(): void {
   }
 
   checkIfReversed(){
-    console.log('check if reversed')
     this.isReversed ? this.isReversed = !this.isReversed :"";
   }
 
   learned(id: BigInteger) {
-    console.log(id)
+    this.apiService.editFlashcard(this.id, undefined, undefined, true)
+    .subscribe((response) => {
+      this.next.emit('')
+    }
+    )
+    
   }
   toBeRepeated(id: BigInteger) {
-    console.log(id)
+    this.apiService.editFlashcard(this.id, undefined, undefined, undefined, true)
+      .subscribe((response) => {
+        this.next.emit('')
+      }
+      )
   }
 
 
